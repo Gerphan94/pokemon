@@ -9,6 +9,7 @@ function PokeDetail( {id, name}) {
             <div className="box-img">
                 <LazyLoadImage
                 className="poke-avatar" 
+                effect="blur"
                 src={ src_path} 
                 alt={name} />
             </div>
