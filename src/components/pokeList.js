@@ -1,34 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import PokeDetail from './pokeDetail';
+import "./component.css"
+import pokeList from './pokelist.json'
 
 function PokeList() {
-
-    const [pokemonList, setPokemonList] = useState([]);
-    useEffect(() => {
-        const fetchPokemonList = async () => {
-          try {
-            const response = await fetch('https://pokeapi.co/api/v2/pokemon/?limit=151');
-            if (!response.ok) {
-              throw new Error('Network response was not ok');
-            }
-    
-            const data = await response.json();
-            setPokemonList(data.results);
-          } catch (error) {
-            console.error('Error fetching Pokemon list:', error);
-          }
-        };
-    
-        fetchPokemonList();
-      }, []);
-
     return (
-        <div>
-            <h1>Pokemon List</h1>
-            <ul>
-                {pokemonList.map((pokemon) => (
-                <li key={pokemon.name}>{pokemon.name}</li>
-                ))}
-            </ul>
+        <div  >
+            <div className='title'>1000 Pokémons</div>
+            
+                <div className='grid'>
+                    {pokeList.map((pokemon) => (
+                        <PokeDetail key={pokemon.id} id={pokemon.id} name={pokemon.name}/> 
+                    ))}
+                </div>
+         
+            
         </div>
     )
 }
