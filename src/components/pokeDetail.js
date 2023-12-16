@@ -6,7 +6,13 @@ function PokeDetail( {id, name}) {
     return (
         <div className="box">
             <div className="box-img">
-                <img className="poke-avatar" src={ src_path} alt={name}></img>
+                <img
+                    loading="lazy"
+                    className="poke-avatar" 
+                    src={ src_path} 
+                    alt={name}>
+
+                </img>
             </div>
             
             <div>{name}</div>
