@@ -1,22 +1,12 @@
-import React, { useState, useEffect } from "react";
-import Pagination from "./pagination";
+import { useState, useEffect } from "react";
 import PokemonDetail from "./pokemon-detail";
 import PokemonBoard from "./pokemon-board";
-const PAGE_SIZE = 50;
+
 const MAX_TOTAL_PAGES = 27;
 
 function Pokemon() {
 
-    console.log("Loading Pokémon data...");
-
     const [allData, setAllData] = useState([]);
-    const [filteredData, setFilteredData] = useState([]);
-    const [searchTerm, setSearchTerm] = useState("");
-    const [debouncedTerm, setDebouncedTerm] = useState("");
-
-    const [currentPage, setCurrentPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(MAX_TOTAL_PAGES);
-    const [pagedData, setPagedData] = useState([]);
     const [showDetail, setShowDetail] = useState(false);
     const [detail, setDetail] = useState({});
 
@@ -41,25 +31,10 @@ function Pokemon() {
 
     // Update visible page data whenever currentPage or allData changes
 
-
-    const handlePrev = () => {
-        if (currentPage > 1) setCurrentPage((p) => p - 1);
-    };
-
-    const handleNext = () => {
-        if (currentPage < Math.ceil(allData.length / PAGE_SIZE)) {
-            setCurrentPage((p) => p + 1);
-        }
-    };
-
     const handleView = (detail) => {
         setDetail(detail);
         setShowDetail(true);
     }
-
-   
-   
-
 
     return (
         <>
@@ -80,8 +55,6 @@ function Pokemon() {
                 </div>
             </div>
             <PokemonBoard data={allData} handleView={handleView} />
-
-           
             <PokemonDetail show={showDetail} setShow={setShowDetail} detail={detail} />
         </>
     )
